@@ -1,0 +1,39 @@
+h1 Assessment Results
+
+each answer, name in questions
+  if name === 'feelingLately'
+    .assessment-question
+      p Can you tell me how you’ve been feeling lately?
+
+      div
+        label.assessment-label Sad/Happy: #{answer.sadHappy}
+      div
+        label.assessment-label Very ill/Generally well: #{answer.illWell}
+      div
+        label.assessment-label Very stressed/Mostly relaxed: #{answer.stressedRelaxed}
+      div
+        label.assessment-label Angry/Content: #{answer.angryContent}
+      div
+        label.assessment-label Fearful/Confident: #{answer.fearfulConfident}
+      div
+        label.assessment-label Nervous/Calm: #{answer.nervousCalm}
+  else if name === 'howMotivated'
+    div
+      label.assessment-label How motivated do you feel to make changes, on a scale of 1-10?: #{answer}
+  else
+    .assessment-question
+      case name
+        when 'wishesFor'
+          p What do you wish you had in your life?
+        when 'wantsChange'
+          p What do you most want to change in your life?
+        when 'relyUponWhom'
+          p When you are feeling stressed or down, who do you rely on?
+
+      each item in answer
+        ul
+          li= item
+
+- var hideTitle = true
+h2 Contact info
+include contact

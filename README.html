@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="file:///Users/kdunnington/.vscode/extensions/yzhang.markdown-all-in-one-0.11.1/media/markdown.css">
+        <link rel="stylesheet" type="text/css" href="file:///Users/kdunnington/.vscode/extensions/yzhang.markdown-all-in-one-0.11.1/media/tomorrow.css">
+        <link rel="stylesheet" type="text/css" href="file:///Users/kdunnington/.vscode/extensions/yzhang.markdown-all-in-one-0.11.1/media/checkbox.css">
+        <title>Catasys OnTrak</title>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="catasys-ontrak-start-here">Catasys OnTrak - Start Here</h1>
+<ul>
+<li><a href="#development">Development</a>
+<ul>
+<li><a href="#getting-started">Getting started</a></li>
+<li><a href="#content">Content</a></li>
+<li><a href="#styling">Styling</a></li>
+<li><a href="#server">Server</a>
+<ul>
+<li><a href="#command-summary">Command Summary</a></li>
+<li><a href="#configuration">Configuration</a>
+<ul>
+<li><a href="#mail-server">Mail Server</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#security">Security</a></li>
+</ul>
+</li>
+<li><a href="#production-server">Production Server</a>
+<ul>
+<li><a href="#node">Node</a></li>
+<li><a href="#yarn">Yarn</a></li>
+<li><a href="#mongodb">MongoDB</a>
+<ul>
+<li><a href="#authentication-authorization">Authentication &amp; Authorization</a></li>
+</ul>
+</li>
+<li><a href="#pm2">PM2</a></li>
+<li><a href="#application-setup">Application Setup</a></li>
+</ul>
+</li>
+<li><a href="#deployment">Deployment</a></li>
+<li><a href="#activation-management">Activation / Management</a>
+<ul>
+<li><a href="#dns-and-proxy">DNS and Proxy</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="development">Development</h2>
+<h3 id="getting-started">Getting started</h3>
+<p>This project utilizes <a href="https://www.gatsbyjs.org/">Gatsby</a>, a <a href="https://reactjs.org/">React</a>-based static site generator. It is assumed that the project's source will be maintained in a <a href="https://git-scm.com">git</a> repository.</p>
+<ul>
+<li>Clone this repository to your local machine</li>
+<li>Make sure you have Yarn installed globally - <a href="https://yarnpkg.com/en/docs/install#alternatives-tab">Installing Yarn</a></li>
+<li><code>cd</code> to the project root and run <code>yarn install</code></li>
+<li>Run <code>yarn run develop</code> from the project root. A development server will be launched at http://localhost:8000.</li>
+</ul>
+<h3 id="content">Content</h3>
+<p>Pages and content are created as React components, stored in the <code>src/pages/</code> directory. These are real, full, React components, and thus may utilize any techniques used to build a standard React app. Components use <a href="http://buildwithreact.com/tutorial/jsx">JSX</a> to define their markup. Any text editor may be used to modify these files, though care should be taken to avoid changing any application code, which is contained in the same file as the markup. There are also a number of custom components used throughout the site, designated by their capitalization (example: <code>&lt;ChatPrompt /&gt;</code>). Any changes made to content will automatically reload the application when running in development mode (<code>yarn run develop</code>), so problems should be quickly apparent and easily avoided. <a href="https://code.visualstudio.com/">Visual Studio Code</a> is the recommended text editor for this application.</p>
+<p>A typical workflow for content editing is as follows:</p>
+<ol>
+<li>
+<p>Start the development server</p>
+<pre><code> yarn run develop
+</code></pre>
+</li>
+<li>
+<p>Open a web browser to the URL listed: http://localhost:8000</p>
+</li>
+<li>
+<p>Open one of the files in <code>src/pages/</code></p>
+</li>
+<li>
+<p>Update the markup and save the file</p>
+</li>
+<li>
+<p>Check results in the browser</p>
+</li>
+</ol>
+<p>Some pages contain additional logic that may require editing non-markup code. For example, to edit the list of Care Coaches:</p>
+<ol>
+<li>
+<p>Open the file <code>src/components/Coaches.js</code> in a text editor</p>
+</li>
+<li>
+<p>Copy (or modify) one of the existing pieces of data at the top of the file in the <code>coaches</code> array</p>
+<pre><code> {
+     firstName: 'Liana',
+     lastName: 'Bonadio',
+     credentials: 'BS, RN',
+     photo: coachImageLiana,
+     content: 'As a Care Coach, Liana combines her knowledge of psychology with her ...'
+ }
+</code></pre>
+</li>
+<li>
+<p>To add a new image, place the image in <code>src/images/</code> and import the image with the other coach images at the top of the file</p>
+<pre><code> import coachImageLiana from '../images/photo-coach-Liana-Bonadio.jpg';
+</code></pre>
+</li>
+<li>
+<p>The changes will be reflected immediately in the browser</p>
+</li>
+</ol>
+<p>New pages can be added by creating a new file in <code>src/pages/</code>, using an existing file as a reference. The site menu is contained in <code>src/components/PageHeader.js</code>.</p>
+<p>Once changes are complete, commit the updated code to the repository. See below for a recommended strategy for deployment to the staging or production server.</p>
+<p>Email templates are contained in <code>server/templates/</code> and are written using the <a href="https://pugjs.org">Pug</a> template engine. Pug resembles a simplified version of HTML, and can directly include HTML markup if desired.</p>
+<h3 id="styling">Styling</h3>
+<ul>
+<li>This application uses <a href="http://sass-lang.com">SASS</a> to pre-process CSS styles
+<ul>
+<li>This processing happens automatically when the application is compiled, no additional steps are needed</li>
+</ul>
+</li>
+<li>All global stylesheets should go into <code>src/stylesheets/</code> and be imported by <code>core.scss</code></li>
+<li>Unique styles for individual components should go into their own stylesheet in <code>src/stylesheets/components/</code>
+<ul>
+<li>Alternatively, component styles may live alongside their respective components and use the suffix <code>.module.css</code>. This will instruct the bundler to treat the file as a CSS module, and thus namespace all the classes and styles contained therein. See <a href="https://www.gatsbyjs.org/tutorial/part-two/#css-modules">here</a> for more information.</li>
+</ul>
+</li>
+<li>Remember to import <code>_variables.scss</code> as well as any other dependency scss that a component will need to access</li>
+</ul>
+<h3 id="server">Server</h3>
+<h4 id="command-summary">Command Summary</h4>
+<p>There are several commands available via <code>yarn run</code>, as follows:</p>
+<ul>
+<li><code>develop</code>: Start the development server, which will auto-reload any changes</li>
+<li><code>serve</code>: Start the API server, which handles the connection to the database as well as email functionality</li>
+<li><code>build</code>: Compile the content into a static bundle, suitable for deployment to any web server</li>
+<li><code>deploy</code>: Compile the content and serve it using the API server</li>
+<li><code>check</code>: Run a security vulnerability check on all dependencies</li>
+</ul>
+<p>The app uses a custom <a href="https://expressjs.com">Express</a> application for serving pages and API handling. This server will treat the contents of <code>public/</code> as static and serve the compiled app accordingly. To run a local copy of the compiled stack, use <code>yarn run deploy</code>, which will build the front end app and start the Express server on port 3000 (by default). To enable the API server while developing using Gatsby's development server, run <code>yarn run serve</code> in one session, and <code>yarn run develop</code> in another. A Visual Studio Code launch configuration (<em>server</em>) is included for easier debugging purposes.</p>
+<h4 id="configuration">Configuration</h4>
+<p>Configuration is controlled through environment variables contained in a file named <code>.env</code> in the root of the project. With the exception of mail server settings (see below), all application settings should be placed in this file. [Note: The file is specific to each environment, and therefore is not, and should not be, committed to version control.] Below are the possible settings and their defaults, if any.</p>
+<pre><code># HTTP Port - the server will automatically redirect any connections on this port to HTTPS
+PORT=3001
+# HTTPS Port
+SSL_PORT=3000
+# Flag to enable debugging output from the Let's Encrypt module. Omit to disable debugging, any truthy value will enable debug output
+DEBUG_LEX=false
+# Database connection string, including username and password
+DB_CONN=mongodb://localhost:27017/catasys
+# Google Analytics account ID
+GA_ID=foo
+# Flag to show or hide the chat interface. Omit this setting to enable chat, any truthy value will disable chat
+GATSBY_DISABLE_CHAT=false
+</code></pre>
+<h5 id="mail-server">Mail Server</h5>
+<p>Due to a slightly more complex structure, mail configuration is stored in separate files, one for development use and one for production.</p>
+<ul>
+<li><code>/server/config/mail.development.json</code></li>
+<li><code>/server/config/mail.json</code></li>
+</ul>
+<p>Which file is loaded depends on the value of the <code>NODE_ENV</code> environment variable. The default value is <code>development</code>.</p>
+<h3 id="security">Security</h3>
+<p>The application uses <a href="https://letsencrypt.org">Let's Encrypt</a> for automatic SSL certificate provisioning and renewal. This is an automatic system, and certificates will be renewed approximately 60 days after being provisioned. The certificate authority needs to be able to access the application server via port <code>80</code> or <code>443</code>. Certificates and other generated support files for Let's Encrypt are stored in <code>/var/catasys/ontrak/letsencrypt/</code>. Certificates will be fetched and stored the first time the application is accessed at its secure port using a valid domain name.</p>
+<p>For code security, there is a dependency on <code>nsp</code>, the <a href="https://nodesecurity.io">Node Security Platform</a> command line tool. Running <code>yarn run check</code> will check dependencies against any known security vulnerabilities.</p>
+<h2 id="production-server">Production Server</h2>
+<p>The server hosting the application should meet the following requirements:</p>
+<ul>
+<li>Ubuntu 16.04 LTS</li>
+<li>2GB RAM</li>
+<li>30GB SSD Storage</li>
+</ul>
+<p>The application utilizes a small number of servers and tools to operate. Below are instructions for installing each, with links to more detailed information.</p>
+<h3 id="node"><a href="https://nodejs.org/en/">Node</a></h3>
+<p>Node is a JavaScript runtime for server applications. The OnTrak application is written entirely in JavaScript, and therefore requires Node in order to compile the browser-facing portion, as well as to run the web and API server. The recommended version of Node is <code>8.9.0 LTS</code>.</p>
+<p>To install Node on Ubuntu systems, run the following commands:</p>
+<ul>
+<li><code>curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -</code></li>
+<li><code>sudo apt-get install -y nodejs</code></li>
+<li><code>sudo apt-get install -y build-essential</code></li>
+</ul>
+<p>Verify that Node has been successfully installed with <code>node --version</code>.</p>
+<p>More details are available <a href="https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions">here</a>.</p>
+<h3 id="yarn"><a href="https://yarnpkg.com/en/">Yarn</a></h3>
+<p>Yarn is a dependency manager for Node applications. It is similar to, and meant to supercede, <code>npm</code>, the Node Package Manager, which is often installed with Node. Yarn provides a more secure, resilliant, and reliable solution. To install Yarn, run the following commands:</p>
+<ul>
+<li><code>curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -</code></li>
+<li><code>echo &quot;deb https://dl.yarnpkg.com/debian/ stable main&quot; | sudo tee /etc/apt/sources.list.d/yarn.list</code></li>
+<li><code>sudo apt-get update &amp;&amp; sudo apt-get install yarn</code></li>
+</ul>
+<p>Verify that Node has been successfully installed with <code>yarn --version</code>.</p>
+<p>More details are available <a href="https://yarnpkg.com/en/docs/install#linux-tab">here</a>.</p>
+<h3 id="mongodb"><a href="https://www.mongodb.com">MongoDB</a></h3>
+<p>MongoDB is a document database used to store records in easily accessible JSON format. Mongo is fast, scalable, secure, and works especially well with Node applications. In order to install Mongo, run the following commands:</p>
+<ul>
+<li><code>sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6</code></li>
+<li><code>echo &quot;deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse&quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list</code></li>
+<li><code>sudo apt-get update</code></li>
+<li><code>sudo apt-get install -y mongodb-org</code></li>
+<li><code>sudo service mongod start</code></li>
+</ul>
+<p>Verify that Mongo has started by checking the log file, <code>cat /var/log/mongodb/mongod.log</code> and looking for a line similar to the following:</p>
+<pre><code>[initandlisten] waiting for connections on port 27017
+</code></pre>
+<p>Once the service has been verified, enable automatically starting on system startup:</p>
+<ul>
+<li><code>sudo systemctl enable mongod</code></li>
+</ul>
+<p>More details are available <a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/">here</a></p>
+<h4 id="authentication-authorization">Authentication &amp; Authorization</h4>
+<p>By default, MongoDB does not require authentication. In order to enable authentication, perform the following steps:</p>
+<ol>
+<li>
+<p>Connect to the database</p>
+<pre><code> mongo
+</code></pre>
+</li>
+<li>
+<p>Create an administration user. This is the <code>root</code> user of the database, and is used to provision additional users, roles and privileges.</p>
+<pre><code> use admin
+ db.createUser({
+   user: 'admin', // Choose an appropriate admin username
+   pwd: 'password', // Specify a strong, secure password
+   roles: [
+     { role: 'userAdminAnyDatabase', db: 'admin' }
+   ]
+ })
+</code></pre>
+</li>
+<li>
+<p>Disconnect from the database shell</p>
+<pre><code> quit()
+</code></pre>
+</li>
+<li>
+<p>Enable Role-Based Access Control by editing <code>/etc/mongo.conf</code>, uncommenting the <code>#security:</code> line, and adding <code>authorization: enabled</code></p>
+<pre><code> security:
+   authorization: enabled
+</code></pre>
+</li>
+<li>
+<p>Restart the database instance</p>
+<pre><code> sudo service mongod restart
+</code></pre>
+</li>
+<li>
+<p>Authenticate using the newly created administrator</p>
+<pre><code> mongo -u &quot;admin&quot; -p &quot;password&quot; -authenticationDatabase &quot;admin&quot;
+</code></pre>
+</li>
+<li>
+<p>Create a new application user. This is the user the API application will authenticate as. The user will be created in the same database used to store application data.</p>
+<pre><code> use catasys
+ db.createUser({
+   user: 'catasys', // The application username
+   pwd: 'password', // A secure password, to be stored in the `.env` configuration file
+   roles: [
+     { role: 'readWrite', db: 'catasys' }
+   ]
+ })
+</code></pre>
+</li>
+<li>
+<p>Disconnect from the shell, and re-authenticate as the new application user</p>
+<pre><code> quit()
+ mongo -u &quot;catasys&quot; -p &quot;password&quot; -authenticationDatabase &quot;catasys&quot;
+</code></pre>
+</li>
+<li>
+<p>Ensure the configuration file has the correct value for the <code>DB_CONN</code> string</p>
+<pre><code> DB_CONN=mongodb://catasys:password@localhost:27017/catasys
+</code></pre>
+</li>
+</ol>
+<p>See <a href="https://docs.mongodb.com/manual/tutorial/enable-authentication/">here</a> for additional details and <a href="https://docs.mongodb.com/manual/reference/configuration-options/#security-options">here</a> for a list of all available security options.</p>
+<h4 id="general-database-usage">General Database Usage</h4>
+<p>There are multiple ways to interact with the database. Using the console, as above, is one way. There are multiple GUI <a href="https://robomongo.org">clients</a> available as well which may prove more useful. Data in MongoDB is stored as JSON documents. How these documents are used is beyond the scope of this document. Some examples of data are:</p>
+<pre><code>    // An answer record
+    use catasys
+    db.answers.find().pretty()
+
+    {
+            &quot;_id&quot; : ObjectId(&quot;59fa15f483127132c4071014&quot;),
+            &quot;results&quot; : {
+                    &quot;question&quot; : &quot;feelingLately&quot;,
+                    &quot;answer&quot; : {
+                            &quot;sadHappy&quot; : 3,
+                            &quot;illWell&quot; : 4,
+                            &quot;stressedRelaxed&quot; : 5,
+                            &quot;angryContent&quot; : 4,
+                            &quot;fearfulConfident&quot; : 6,
+                            &quot;nervousCalm&quot; : 4
+                    }
+            },
+            &quot;sessionID&quot; : &quot;M_9ufv3ujQYQJDNwuuw8-42rZ-qRQdKD&quot;,
+            &quot;created&quot; : ISODate(&quot;2017-11-01T18:44:04.268Z&quot;)
+    }
+
+    // A complete assessment record
+    {
+            &quot;_id&quot; : ObjectId(&quot;59f788b74a75a79914638739&quot;),
+            &quot;result&quot; : {
+                    &quot;questions&quot; : {
+                            &quot;feelingLately&quot; : {
+                                    &quot;sadHappy&quot; : 3,
+                                    &quot;illWell&quot; : 7,
+                                    &quot;stressedRelaxed&quot; : 3,
+                                    &quot;angryContent&quot; : 7,
+                                    &quot;fearfulConfident&quot; : 2,
+                                    &quot;nervousCalm&quot; : 7
+                            },
+                            &quot;wishesFor&quot; : [
+                                    &quot;Moments of peace or happiness&quot;,
+                                    &quot;A better connection with family or friends&quot;,
+                                    &quot;Test&quot;
+                            ],
+                            &quot;wantsChange&quot; : [
+                                    &quot;Generally live a healthier life&quot;,
+                                    &quot;Decrease or stop drug use&quot;,
+                                    &quot;Become tobacco and nicotine free&quot;
+                            ],
+                            &quot;relyUponWhom&quot; : [
+                                    &quot;My doctor&quot;,
+                                    &quot;One or two friends&quot;,
+                                    &quot;My spouse or significant other&quot;,
+                                    &quot;A community of friends&quot;,
+                                    &quot;Myself&quot;,
+                                    &quot;Coworkers&quot;,
+                                    &quot;Religious support&quot;,
+                                    &quot;My parents, siblings or extended family&quot;
+                            ],
+                            &quot;howMotivated&quot; : 3
+                    },
+                    &quot;contactInfo&quot; : {
+                            &quot;fullName&quot; : &quot;Test&quot;,
+                            &quot;phoneNumber&quot; : &quot;222-555-1234&quot;,
+                            &quot;emailAddress&quot; : &quot;test@example.com&quot;,
+                            &quot;dateOfBirth&quot; : &quot;2001-05-12&quot;,
+                            &quot;bestCallTimes&quot; : &quot;Wednesday 3pm - 6pm&quot;,
+                            &quot;isEnrolled&quot; : null,
+                            &quot;timezone&quot; : {
+                                    &quot;identifier&quot; : &quot;America/New_York&quot;,
+                                    &quot;zone&quot; : &quot;EDT&quot;,
+                                    &quot;offset&quot; : &quot;-04:00&quot;
+                            }
+                    },
+                    &quot;source&quot; : &quot;homepage&quot;
+            },
+            &quot;message&quot; : {
+                    &quot;accepted&quot; : [
+                            &quot;kdunnington@madpow.net&quot;
+                    ],
+                    &quot;rejected&quot; : [ ],
+                    &quot;response&quot; : &quot;250 Accepted [STATUS=new MSGID=Wd5CA-1GKg1-KkMzWfeIt649iAhvl0-OAAAAiLqcscMLNuCY4odE6tfWCZw]&quot;,
+                    &quot;envelope&quot; : {
+                            &quot;from&quot; : &quot;kdunnington@madpow.net&quot;,
+                            &quot;to&quot; : [
+                                    &quot;kdunnington@madpow.net&quot;
+                            ]
+                    },
+                    &quot;messageId&quot; : &quot;&lt;0df7050d-f11c-5ec4-2a25-9976cc5162a3@madpow.net&gt;&quot;
+            },
+            &quot;sessionID&quot; : &quot;iW65E1fkR8VSRSwykDX4z3j_7pwd8Gm7&quot;,
+            &quot;created&quot; : ISODate(&quot;2017-10-30T20:16:55.489Z&quot;),
+            &quot;url&quot; : &quot;https://ethereal.email/message/Wd5CA-1GKg1-KkMzWfeIt649iAhvl0-OAAAAiLqcscMLNuCY4odE6tfWCZw&quot;
+    }
+</code></pre>
+<p>The <code>sessionID</code> is a unique ID created for each user. This ID is stored in a secure cookie on the user's browser, and will expire when the browser window is closed.</p>
+<h3 id="pm2"><a href="http://pm2.keymetrics.io">PM2</a></h3>
+<p>PM2 is a process manager designed for Node applications. It is used to provision, monitor and maintain the web and API server. It integrates with the OS's native process manager to ensure the application remains running, even after a crash or a system restart. In order to install PM2, run the following command:</p>
+<ul>
+<li><code>sudo npm i -g pm2</code></li>
+</ul>
+<p>This will install PM2 globally. Configuration settings for PM2 are stored in <code>ecosystem.config.js</code>.</p>
+<h3 id="application-setup">Application Setup</h3>
+<p>Once the supporting services are in place, there are a few steps required to set up the application itself and prepare it for production. The following steps are a guideline - the actual directory names, users, and URLs may differ, depending on the final handoff, and administrator preference.</p>
+<h2 id="deployment">Deployment</h2>
+<p>Recommended deployment to the production server is handled via git hooks. You must have a valid SSH key for the production server in order to deploy.</p>
+<ol>
+<li>
+<p>Create or edit the file <code>~/.ssh/config</code> on your local (development) system so it looks like the following:</p>
+<pre><code> Host *
+   PreferredAuthentications publickey
+   ServerAliveInterval 120
+   UseKeychain yes
+   AddKeysToAgent yes
+   ForwardAgent yes
+   IdentitiesOnly yes
+
+ Host catasys-prod
+   HostName {PRODUCTION SERVER IP OR HOSTNAME}
+   IdentityFile /Users/{YOUR_LOCAL_USER}/.ssh/{YOUR_CATASYS_PRIVATE_SSH_KEY}
+</code></pre>
+<p>The above will set some SSH defaults and add an SSH alias for the production server that will automatically use the correct key when connecting.</p>
+</li>
+<li>
+<p>On the production server, create a new directory where the application will live</p>
+<pre><code> sudo mkdir -p /var/catasys/ontrak
+</code></pre>
+</li>
+<li>
+<p>Change to the new directory and set its owner to the user who will run the application</p>
+<pre><code> cd /var/catasys/ontrak
+ sudo chown {USERNAME} /var/catasys
+</code></pre>
+</li>
+<li>
+<p>Create a bare git repository in the home directory of the user who will run the application</p>
+<pre><code> git init --bare ~/ontrak.git
+</code></pre>
+</li>
+<li>
+<p>Create a hook file in <code>~/ontrak.git/hooks/</code> named <code>post-receive</code> using the file <code>hooks/post-receive</code> as a guide. Set the file paths and branch name to match the desired setup.</p>
+</li>
+<li>
+<p>On your development system, add a new origin to your local working copy of the project.</p>
+<p>// From within the project's working directory
+git remote add production {REMOTE_USERNAME}@catasys-prod:ontrak.git</p>
+</li>
+<li>
+<p>Repeat the same process for a staging server, if desired.</p>
+</li>
+<li>
+<p>Once set up, pushing changes to the <code>production</code> remote will trigger the hook, which will copy the files to the specified directory, install dependencies, check for security vulnerabilities and recompile the site.</p>
+</li>
+</ol>
+<h2 id="activation-management">Activation / Management</h2>
+<p>Once the files are in place, the application must be started, and setup to remain running after a crash or system restart.</p>
+<ol>
+<li>
+<p>Start the application as a daemon in production mode using the PM2 process manager</p>
+<pre><code> cd /var/catasys/ontrak
+ pm2 start ecosystem.config.js --env production
+</code></pre>
+</li>
+<li>
+<p>Generate and configure the startup script</p>
+<pre><code> pm2 startup
+ // This will output the correct command to run in order to start the application automatically on system startup
+ // Example: `sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u ubuntu --hp /home/ubuntu`
+</code></pre>
+</li>
+<li>
+<p>Save the process list. This ensures that, upon server restart, the currently running configuration will be recreated.</p>
+<pre><code> pm2 save
+</code></pre>
+</li>
+</ol>
+<p>The application is now running and will remain active unless explicitly stopped. Some useful management commands are:</p>
+<ul>
+<li><code>pm2 ls</code>: List active processes</li>
+<li><code>pm2 monit</code>: Actively monitor running processes</li>
+<li><code>pm2 logs</code>: View and monitor application logs
+<ul>
+<li>Logs are stored in <code>/var/catasys/ontrak/logs</code> by default</li>
+</ul>
+</li>
+<li><code>pm2 stop ecosystem.config.js</code>: Stop the application. It will be restarted if the system restarts.</li>
+<li><code>pm2 delete ecosystem.config.js</code>: Remove the application from the process list. It will be restarted if the system restarts.</li>
+<li><code>pm2 save</code>: Commit the current process list to disk. This is the list used when the system starts up.</li>
+</ul>
+<h3 id="dns-and-proxy">DNS and Proxy</h3>
+<p>By default, the application listens for HTTPS connections on port 3000. This is an unprivileged port, which does not require root access and is therefore more secure. Additionally, the production (and staging) server should only accept connections from a designated list of external IP addresses. In order to allow users to access the application, a reverse proxy is required. It is recommended to use <a href="https://www.nginx.com">nginx</a> as a reverse proxy, ideally on a separate host. Configuring nginx is beyond the scope of this document, but some recommended configuration options can be found <a href="https://mozilla.github.io/server-side-tls/ssl-config-generator/?server=nginx-1.13.6&amp;openssl=1.0.1e&amp;hsts=yes&amp;profile=modern">here</a> and <a href="http://pm2.keymetrics.io/docs/tutorials/pm2-nginx-production-setup">here</a>. This reverse proxy can additionally be placed behind a service such as <a href="https://www.cloudflare.com">CloudFlare</a> for extra performance and security. CloudFlare can handle caching, CDN replication, and DDOS protection. Unfortunately, CloudFlare does not allow proxying from one port (443) to another (3000), which is why the nginx reverse proxy is required between the two.</p>
+
+    </body>
+    </html>

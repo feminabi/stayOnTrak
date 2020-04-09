@@ -1,0 +1,10 @@
+h1= title
+ul
+  li Full name: #{contactInfo.fullName}
+  li Phone number: #{contactInfo.phoneNumber}
+  li Email address: <a href="mailto:#{emailAddress}">#{contactInfo.emailAddress}</a>
+  li Date of Birth: #{contactInfo.dateOfBirth}
+  li Best times to call: #{contactInfo.bestCallTimes}
+  if contactInfo.isEnrolled !== null && contactInfo.isEnrolled !== undefined
+    li Is Enrolled: #{contactInfo.isEnrolled}
+  li Timezone: #{contactInfo.timezone.identifier}, #{contactInfo.timezone.offset} #{contactInfo.timezone.zone}

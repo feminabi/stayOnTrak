@@ -1,0 +1,146 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+/**
+ * Import environment variables - these are deploy-specific and should not be commited to source control
+ */
+require('dotenv').config()
+
+const app = require('../server/app')
+const debug = require('debug')('catasys:server')
+const fs = require('fs')
+const http = require('http')
+const https = require('https')
+const greenlock = require('greenlock-express')
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+const port = normalizePort(process.env.SSL_PORT || '3000')
+const plainPort = normalizePort(process.env.PORT || '3001')
+app.set('port', port)
+app.set('plainPort', plainPort)
+
+if (app.get('env') === 'development') {
+  debug('Starting development server ...')
+  developmentServer()
+} else {
+  debug('Starting production server ...')
+  productionServer()
+}
+
+function productionServer() {
+  /**
+   * Set up Let's Encrypt
+   */
+  const lex = greenlock.create({
+    //  server: 'staging',
+    server: 'https://acme-v01.api.letsencrypt.org/directory',
+    approveDomains: approveDomains,
+    app: app,
+    debug: process.env.DEBUG_LEX ? true : false,
+    store: require('le-store-certbot').create({
+      configDir: './letsencrypt/etc',
+      workDir: './letsencrypt/lib',
+      logsDir: './letsencrypt/log',
+      webrootPath: './letsencrypt/srv/www/:hostname/.well-known/acme-challenge',
+      debug: process.env.DEBUG_LEX ? true : false
+    })
+  })
+
+  function approveDomains(options, certs, cb) {
+    if (certs) {
+      options.domains = certs.altnames
+    } else {
+      options.email = 'kdunnington@madpow.net'
+      options.agreeTos = true
+    }
+
+    cb(null, { options, certs })
+  }
+
+  const secureServer = lex.listen(plainPort, port)
+  secureServer.on('listening', onListening)
+  secureServer.on('error', onError)
+}
+
+function developmentServer() {
+  /**
+   * Create HTTP server.
+   */
+
+  var server = http.createServer(app)
+
+  /**
+   * Listen on provided port, on all network interfaces.
+   */
+
+  server.listen(port)
+  server.on('error', onError)
+  server.on('listening', onListening)
+}
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  const port = parseInt(val, 10)
+
+  if (isNaN(port)) {
+    // named pipe
+    return val
+  }
+
+  if (port >= 0) {
+    // port number
+    return port
+  }
+
+  return false
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error
+  }
+
+  const addr = this.address()
+  const bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges')
+      process.exit(1)
+      break
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use')
+      process.exit(1)
+      break
+    default:
+      throw error
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  const addr = this.address()
+  const bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port
+  debug('Listening on ' + bind)
+}

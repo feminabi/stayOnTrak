@@ -1,0 +1,25 @@
+#!/bin/bash
+set -eu
+
+TARGET="/var/catasys/ontrak"
+GIT_DIR="/home/kdunnington/ontrak.git"
+BRANCH="master"
+
+while read oldrev newrev ref
+do
+        # only checking out the master (or whatever branch you would like to deploy)
+        if [[ $ref = refs/heads/"$BRANCH" ]];
+        then
+                echo "Ref $ref received. Deploying ${BRANCH} branch to production..."
+                git --work-tree="$TARGET" --git-dir="$GIT_DIR" checkout -f "$BRANCH"
+                cd "$TARGET"
+                echo "Installing dependencies ..."
+                yarn install
+                echo "Checking for vulnerabilities ..."
+                yarn run check
+                echo "Building site ..."
+                yarn run build
+        else
+                echo "Ref $ref received. Doing nothing: only the ${BRANCH} branch may be deployed on this server."
+        fi
+done

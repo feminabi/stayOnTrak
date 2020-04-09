@@ -1,0 +1,14 @@
+{
+    "options": {
+        "host": "smtp.ethereal.email",
+        "port": 587,
+        "secure": false,
+        "auth": {
+            "user": "ixufoqoy7aiudauf@ethereal.email",
+            "pass": "3CMmwc7K4NKJFPxUXa"
+        }
+    },
+    "defaults": {
+        "from": "contact@stayontrak.com"
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "options": {
+        "host": "us-smtp-outbound-1.mimecast.com",
+        "port": 25,
+        "secure": false
+    },
+    "defaults": {
+        "from": "contact@stayontrak.com"
+    }
+}

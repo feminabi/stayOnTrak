@@ -1,0 +1,398 @@
+@import '../variables';
+@import '../layout';
+@import '../elements/button';
+@import '../elements/input-checkbox-radio';
+@import '../elements/assessment-common';
+
+
+.assessment-screen {
+  background-color: $color-beige-sand;
+  width: 100vw;
+  height: 100vh;
+
+  .page-intro-block {
+    margin-top: 0;
+  }
+}
+
+.screen-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 6rem;
+  max-width: $wrapper-max-width;
+  margin: 0 auto;
+
+  padding: 0 1.5rem;
+
+  .logo-ontrak {
+    width: 120px;
+    height: 40px;
+  }
+
+  .phone {
+    max-width: 16ch;
+    text-align: right;
+    font-size: $text-size-xs;
+  }
+
+  .back-link {
+    display: flex;
+    align-items: center;
+
+    text-transform: uppercase;
+    font: {
+      weight: 700;
+      size: 1rem;
+    }
+
+    span {
+      margin-top: 0.25rem;
+      margin-left: 0.5rem;
+      text-align: right;
+    }
+
+    svg {
+      height: 2.25rem;
+      width: 2.25rem;
+      fill: $color-text-link;
+
+      margin-left: 1rem;
+    }
+  }
+
+  @media (min-width: $small-screen) {
+    height: 8rem;
+
+    .phone {
+      max-width: 100%;
+      text-align: left;
+      font-size: $text-size-body;
+    }
+
+    .back-link {
+      font-size: $text-size-tiny;
+    }
+  }
+
+  @media (min-width: $medium-screen) { }
+
+    @media (min-width: $large-screen) {
+    padding: 0;
+
+    .logo-ontrak {
+      width: 178px;
+      height: 58px;
+    }
+  }
+}
+
+.page-intro-block.start-assessment {
+  p {
+    line-height: 2.4rem;
+    font-size: $text-size-sm;
+  }
+
+  @media (min-width: $small-screen) {
+    p {
+      line-height: 3.4rem;
+      font-size: $text-size-ml;
+    }
+  }
+
+  @media (min-width: $medium-screen) {
+    p {
+      margin-top: 4.8rem;
+      line-height: 3.8rem;
+      font-size: $text-size-xl;
+    }
+  }
+}
+
+.page-heading-block.about-ontrak {
+  max-width: $small-block-width;
+
+  p {
+    max-width: 100%;
+  }
+}
+
+.assessment-card {
+  max-width: $wrapper-max-width;
+  background-color: $color-beige-cream;
+  padding: 1.8rem;
+
+  @media (min-width: $small-screen) {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 50rem;
+
+    padding: 2.5rem 4rem 3.5rem;
+    border-radius: $element-corner-radius;
+
+    &:not(.first-question) {
+      min-height: 660px;
+    }
+
+    &.first-question {
+      margin-bottom: 6rem;
+
+      .assessment-question {
+        padding-bottom: 10rem;
+      }
+    }
+  }
+}
+
+.first-question.is-landing-page {
+  h2 {
+    line-height: 2.4rem;
+    font-size: $text-size-sm;
+  }
+
+  @media (min-width: $small-screen) {
+    h2 {
+      line-height: 3.4rem;
+      font-size: $text-size-ml;
+    }
+
+    .assessment-card {
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
+
+    .assessment-label {
+      white-space: normal;
+    }
+
+    .question-navigation-group {
+      justify-content: center;
+      margin-bottom: 1rem;
+
+      .link-styled {
+        display: none;
+      }
+    }
+  }
+
+  @media (min-width: $medium-screen) {
+    h2 {
+      line-height: 3.8rem;
+      font-size: $text-size-xl;
+    }
+  }
+}
+
+.assessment-question {
+  flex-grow: 1;
+
+  text-align: center;
+
+  h1 {
+    margin-bottom: 0.8rem;
+    line-height: 2.8rem;
+    font-size: $text-size-md;
+  }
+
+  p {
+    font-size: $text-size-sm;
+  }
+
+  @media (min-width: $small-screen) {
+    h1 {
+      line-height: 3.2rem;
+      font-size: 2.8rem;
+    }
+  }
+
+  @media (min-width: $medium-screen) {
+    h1 {
+      line-height: 4.6rem;
+      font-size: $text-size-big;
+    }
+
+    p {
+      font-size: $text-size-ml;
+    }
+  }
+
+  .label-styling {
+    span {
+      @extend %button-style-internal-span-styling;
+    }
+
+    div {
+      height: 100%;
+    }
+
+    input {
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      padding: 1.5rem;
+    }
+
+    @media (min-width: $medium-screen) {
+      max-width: 66%;
+
+      margin-right: auto;
+      margin-left: 2%;
+    }
+  }
+}
+
+.question-navigation-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4rem;
+
+  .button-primary {
+    width: 100%;
+    text-transform: none;
+    font: {
+      weight: 600;
+      size: $text-size-xs;
+    }
+  }
+
+  .link-styled {
+    text-transform: uppercase;
+    font: {
+      weight: 600;
+      size: $text-size-tiny - 0.1rem;
+    }
+  }
+
+  @media (max-width: $small-screen) {
+    .button-primary {
+      padding: 1.4rem 1.5rem 1.6rem;
+    }
+
+    .link-styled {
+      order: 2;
+
+      margin-top: 1rem;
+      padding-top: 1.5rem;
+      font-size: $text-size-tiny - 0.1rem;
+    }
+  }
+
+  @media (min-width: $small-screen) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    border-top: 1px solid rgba(99, 99, 99, 0.3);
+    padding-top: 4rem;
+
+    .link-styled {
+      font-size: $text-size-tiny;
+    }
+
+    .button-primary {
+      width: auto;
+      min-width: 25rem;
+      font-size: $text-size-sm;
+    }
+  }
+}
+
+.multiselect-group {
+  margin-top: -1rem;
+
+  .button-style-checkbox {
+    @extend %label-checkbox-radio;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 2rem;
+
+    span {
+      display: inline-block;
+      height: 100%;
+      padding: 1.5rem;
+
+      line-height: 1.8rem;
+      font-size: $text-size-xs;
+    }
+  }
+
+  @media (min-width: $small-screen) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    label {
+      flex: 0 0 45%;
+
+      span {
+        line-height: 2.4rem;
+        font-size: $text-size-sm;
+      }
+    }
+  }
+
+  @media (min-width: $medium-screen) {
+    margin-top: 0;
+
+    label {
+      flex: 0 0 32%;
+
+      span {
+        font-size: $text-size-body;
+      }
+    }
+  }
+  
+}
+
+.assessment-progress {
+  padding-bottom: 5rem;
+  font-size: $text-size-xs;
+  text-align: center;
+
+  progress {
+    width: calc(100% - 3.6rem);
+    height: 0.5rem;
+    background-color: $color-white;
+
+    &[value] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+
+      border: none;
+
+      color: $color-gray-stone;
+    }
+
+    &::-webkit-progress-bar {
+      background-color: $color-white;
+    }
+
+    &::-webkit-progress-value {
+      background-color: $color-gray-stone;
+    }
+
+    &::-moz-progress-bar {
+      background-color: $color-gray-stone;
+    }
+  }
+
+  @media (min-width: $small-screen) {
+    font-size: $text-size-sm;
+
+    progress {
+      width: 46rem;
+    }
+  }
+}
+
+.assessment-card .assessment-scale {
+  animation-duration: 0.2s;
+  animation-name: addItem;
+  animation-fill-mode: forwards;
+}
+

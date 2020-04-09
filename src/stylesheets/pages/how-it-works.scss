@@ -1,0 +1,222 @@
+@import '../utilities';
+@import '../layout';
+
+.program-attributes {
+  margin-top: 5rem;
+
+  //& + h2 {
+  //  margin-top: 0.8rem;
+  //  margin-bottom: $section-spacing-sm;
+  //}
+}
+
+.attributes-block {
+  margin-bottom: 4.5rem;
+  text-align: center;
+
+  h3 {
+    margin-top: 0;
+    font-weight: 400;
+
+    @extend %header-decorative-separator;
+
+    &::after {
+      bottom: -2rem;
+    }
+  }
+
+  p {
+    max-width: 30ch;
+    margin-top: 2rem;
+    margin-bottom: 0;
+    line-height: 2.4rem;
+    font-size: $text-size-sm;
+  }
+
+  @media (min-width: $small-screen) {
+
+    margin-bottom: 7rem;
+
+    flex-basis: 34rem !important;
+  }
+
+  @media (max-width: $small-screen) {
+    h3 {
+      font-size: $text-size-body;
+    }
+  }
+
+  @media (min-width: $medium-screen) {
+    p {
+      line-height: 3rem;
+      font-size: $text-size-body;
+    }
+  }
+
+  @media (min-width: $small-screen) and (max-width: $medium-screen) {
+    &:last-of-type {
+      margin-top: -10px;
+    }
+  }
+}
+
+.page-heading-block.your-team-header {
+    padding-top: 2.4rem;
+    padding-bottom: 3rem;
+
+  @media (min-width: $small-screen) {
+    padding-top: 5rem;
+    padding-bottom: 4.2rem;
+  }
+
+  @media (min-width: $medium-screen) {
+    padding-bottom: 6.4rem;
+  }
+}
+
+.your-team {
+  margin-bottom: 4rem;
+
+  @media (min-width: $small-screen) {
+    display: flex;
+
+    margin-bottom: 12rem;
+
+    .team-photo {
+      flex-basis: 35%;
+      margin-right: 3rem;
+
+      padding: 0;
+    }
+
+    .team-copy {
+      flex-basis: 65%;
+    }
+  }
+
+  @media (min-width: $medium-screen) {
+    display: flex;
+
+    > div {
+      flex-basis: 50%;
+    }
+
+    .team-photo {
+      margin-right: 4rem;
+    }
+  }
+
+  img {
+    width: 100%;
+  }
+
+  @media (min-width: $large-screen) {
+    > div.team-photo {
+      flex-basis: auto;
+    }
+  }
+}
+
+.team-photo {
+  padding-left: $spacing-common-container-edges;
+  padding-right: $spacing-common-container-edges;
+
+  img {
+    border-radius: $element-corner-radius;
+  }
+}
+
+.team-copy {
+  padding-left: $spacing-common-container-edges;
+  padding-right: $spacing-common-container-edges;
+
+  text-align: center;
+
+  h4 {
+    font-size: $text-size-sm;
+  }
+
+  p {
+    margin-top: 1rem;
+
+    font-size: $text-size-sm;
+
+    &:not(:last-of-type) {
+      position: relative;
+      padding-bottom: 3.5rem;
+      margin-bottom: 3.5rem;
+
+      &::after {
+        @extend %decorative-separator;
+
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        content: '';
+      }
+    }
+  }
+
+  @media (min-width: $small-screen) {
+    padding: 0;
+    text-align: left;
+
+    h4 {
+      font-size: $text-size-body;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+
+    p {
+      line-height: 2.4rem;
+      font-size: $text-size-sm;
+
+      &:not(:last-of-type) {
+        padding-bottom: 4rem;
+
+        &::after {
+          left: 0;
+          transform: translateX(0);
+        }
+      }
+    }
+  }
+
+  @media (min-width: $medium-screen) {
+    p {
+      line-height: 3rem;
+      font-size: $text-size-body;
+    }
+  }
+} 
+
+.centered-button {
+  text-align: center;   
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+}
+
+.centered-button-stories {
+  text-align: center;   
+  margin-top: -5rem;
+  margin-bottom: 5rem;
+}
+
+.centered-button-help,.centered-button-works {
+  text-align: center;    
+  margin-top: 2rem;
+}
+
+.centered-button-assessment{
+  text-align: center;    
+  margin-top: -8rem;  
+  margin-bottom: 5rem;
+}
+
+.applynow{
+  margin-top: 2rem;
+  width: 24rem;
+}

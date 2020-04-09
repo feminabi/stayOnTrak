@@ -1,0 +1,200 @@
+%header-common-styling {
+  font: {
+    family: $font-headers-regular;
+    weight: 700;
+  }
+}
+
+%text-common-styling {
+  font: {
+    family: $font-headers-regular;
+    weight: 400;
+  }
+}
+
+%link-common-styling {
+  text-decoration: none;
+
+  color: $color-text-link;
+
+  &[href^='tel:'] {
+    color: currentColor;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+%text-body {
+  @extend %text-common-styling;
+
+  font-size: $text-size-sm;
+  line-height: 2.4rem;
+
+  @media (min-width: $small-screen) {
+    font-size: $text-size-body;
+    line-height: 2.8rem;
+  }
+
+  @media (min-width: $large-screen) {
+    line-height: 3rem;
+  }
+}
+
+%header-h1 {
+  @extend %header-common-styling;
+
+  font-size: $text-size-ml;
+
+  @media (min-width: $small-screen) {
+    font-size: $text-size-big;
+  }
+
+  @media (min-width: $medium-screen) {
+    font-size: $text-size-xxl;
+  }
+
+  @media (min-width: $large-screen) {
+    font-size: $text-size-huge;
+  }
+}
+
+%header-h2 {
+  @extend %header-common-styling;
+
+  font-size: $text-size-ml;
+
+  @media (min-width: $small-screen) {
+    font-size: $text-size-xl;
+  }
+
+  @media (min-width: $large-screen) {
+    font-size: $text-size-big;
+  }
+}
+
+%header-h3 {
+  @extend %header-common-styling;
+
+  font-size: $text-size-sm;
+
+  @media (min-width: $small-screen) {
+    font-size: $text-size-md;
+  }
+
+  @media (min-width: $large-screen) {
+    font-size: $text-size-ml;
+  }
+}
+
+%header-h4 {
+  @extend %header-common-styling;
+  margin-bottom: 0;
+
+  font-size: $text-size-body;
+}
+
+%chat-prompt-text {
+  @extend %text-common-styling;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+%marquee-paragraph-text {
+  @extend %text-common-styling;
+
+  font-size: $text-size-sm;
+  line-height: 2.2rem;
+
+  @media (min-width: $small-screen) {
+    font-size: $text-size-md;
+    line-height: 3rem;
+  }
+
+  @media (min-width: $large-screen) {
+
+    font-size: $text-size-lg;
+    line-height: 3.6rem;
+  }
+}
+
+%testimonial-feature-text {
+  @extend %text-common-styling;
+
+  font-size: $text-size-sm;
+  line-height: 2.4rem;
+
+  @media (min-width: $small-screen) {
+    font-size: $text-size-body;
+    line-height: 2.8rem;
+  }
+
+  @media (min-width: $large-screen) {
+    font-size: $text-size-md;
+    line-height: 3.4rem;
+  }
+}
+
+%testimonial-name {
+  @extend %text-common-styling;
+
+  text-transform: uppercase;
+  font: {
+    style: normal;
+    weight: 700;
+    size: 1rem;
+  }
+
+  @media (min-width: $small-screen) {
+    font-size: $text-size-tiny;
+  }
+
+  @media (min-width: $large-screen) {
+    font-size: $text-size-xs;
+  }
+}
+
+
+%form-label {
+  font: {
+    family: $font-headers-regular;
+    weight: 600;
+    size: $text-size-sm;
+  }
+
+  @media (min-width: $large-screen) {
+    font-size: $text-size-body;
+  }
+}
+
+%form-label-secondary {
+  @extend %form-label;
+
+  font-weight: 300;
+}
+
+%footer-links {
+  font: {
+    weight: 600;
+    size: $text-size-xs;
+  }
+
+  @media (min-width: $small-screen) {
+    font-size: $text-size-sm;
+  }
+}
+
+%footer-contact-info {
+  text-transform: uppercase;
+
+  font-size: $text-size-tiny - 0.1rem;
+  line-height: 1.8rem;
+
+  color: $color-text-pale;
+
+  @media (min-width: $large-screen) {
+    font-size: $text-size-tiny;
+  }
+}
+

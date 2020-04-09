@@ -1,0 +1,192 @@
+@import '../variables';
+@import '../layout';
+@import '../typography';
+
+
+.home-banner {
+  // background image is set inside of index.js component
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+
+  position: relative;
+  max-height: 65rem;
+
+  padding-bottom: 2rem;
+
+  > div {
+    display: flex;
+    height: 100%;
+    margin-top: 1rem;
+  }
+
+  @media (min-width: $small-screen) {
+    background-position: top left;
+
+    height: 43vh;
+
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  @media (min-width: $medium-screen) {
+    height: 60vh;
+  }
+
+  @media (min-width: $large-screen) {
+    background-size: cover;
+    height: 70vh;
+    min-height: 66.5rem;
+  }
+
+  p {
+    @extend %marquee-paragraph-text;
+
+    margin: 0.25rem 0 2rem;
+  }
+
+  .banner-decorative-curve {
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @media (max-width: $medium-screen) {
+      display: none;
+    }
+  }
+
+  > div {
+    @extend %block-wrapper;
+  }
+}
+
+.home-banner-content {
+  align-self: center;
+
+  max-width: 52.5rem;
+  width: 100%;
+  padding-top: 0.6rem;
+  margin: 0 1.5rem;
+
+  @media (min-width: $small-screen) {
+    margin: 0.3rem 0 0;
+  }
+
+  @media (min-width: $medium-screen) {
+    margin: 0;
+  }
+
+  .copy {
+    width: 23rem;
+
+    background-color: #bce3f8;
+    margin: 0;
+    padding: 1rem 0.5rem 1rem 1rem;
+
+    h1 {
+      margin: 0;
+    }
+
+    p {
+      margin: 0.7rem 0 0;
+    }
+
+    @media (max-width: $xxsmall-screen) {
+      width: 20rem;
+
+      p {
+        font-size: $text-size-xs;
+      }
+    }
+
+    @media (min-width: $small-screen) {
+      width: 36rem;
+
+      p {
+        margin-top: 0;
+      }
+    }
+
+    @media (min-width: $medium-screen) {
+      width: auto;
+      padding: 1.75rem 2.5rem 2rem;
+    }
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.7rem;
+
+    .button {
+      display: inline-block;
+
+      @media (max-width: $small-screen) {
+        flex-basis: 23rem;
+
+        font-size: $text-size-tiny;
+      }
+
+      @media (max-width: $xxsmall-screen) {
+        flex-basis: 20rem;
+      }
+
+      &:first-child {
+        background-color: rgba(255, 255, 255, 1);
+        border: none;
+
+        padding-top: 1.6rem;
+        padding-bottom: 1.4rem;
+      }
+    }
+
+    @media (min-width: $small-screen) {
+      margin-top: 1.3rem;
+    }
+
+    @media (min-width: $medium-screen) {
+      margin-top: 2.2rem;
+    }
+  }
+}
+
+.learn-more {
+  margin-bottom: 3rem;
+
+  @media (min-width: $small-screen) {
+    margin-bottom: 4rem;
+  }
+}
+
+.page-heading-block {
+  &.how-it-works {
+    padding-bottom: 4.4rem;
+  }
+
+  &.start-assessment {
+    padding-top: 6.4rem;
+    padding-bottom: 2.9rem;
+
+    & + .content-block-small {
+      padding-bottom: 6.4rem;
+    }
+  }
+
+  &.get-results {
+    padding-top: 3.5rem;
+    padding-bottom: 2.3rem;
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  @media (min-width: $small-screen) {
+    padding-bottom: 6.4rem;
+  }
+
+  @media (min-width: $medium-screen) {
+    padding-top: 8.4rem;
+  }
+}

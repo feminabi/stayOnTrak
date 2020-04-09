@@ -1,0 +1,79 @@
+@import '../_variables.scss';
+@import '../_typography.scss';
+
+
+.chat-prompt {
+  @extend %chat-prompt-text;
+
+  //background: $color-beige-cream;
+  //box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.3);
+  border-radius: $element-corner-radius;
+  //display: none;
+  //padding: 3.5rem 1.5rem 2rem;
+  position: relative;
+  text-align: center;
+  margin: 3rem auto 0;
+
+  //width: 22rem;
+  z-index: 999;
+
+  @media (min-width: $large-screen) {
+    display: block;
+    span{
+      display: none;
+    }
+  }
+
+  .icon + p {
+    @extend %chat-prompt-text;
+    margin: 0;
+  }
+
+  .icon {
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: -2.4rem;
+  }
+}
+
+section > .chat-prompt {
+  position: absolute;
+  right: 2rem;
+  top: 9rem;
+  span{
+    display: none;
+  }
+}
+
+@media (max-width: $medium-screen){
+  .chat-prompt{
+    &.mobile-chat{
+        top:28rem;
+        span{
+          display: none;
+        }
+    }
+  }
+}
+
+@media (max-width: $small-screen){
+  .chat-prompt{
+    &.mobile-chat{
+        background-color:transparent;
+        box-shadow:none;
+        width:auto;
+        height:auto;
+        padding:0;
+        top:25rem;
+        right:6rem;
+        img,p{
+          display:none;
+        }
+        span{
+          display: block;
+        }
+    }
+  }
+}
+

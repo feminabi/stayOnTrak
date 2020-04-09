@@ -1,0 +1,18 @@
+@import '../variables';
+
+.how-we-can-help {
+
+  @media (max-width: $small-screen) {
+    .banner + .page-heading-block {
+      h2 {
+        font-size: $text-size-md;
+      }
+    }
+  }
+
+  @media (max-width: $medium-screen) {
+    .ontrak-modules-list h3 {
+      margin-bottom: 0.5rem;
+    }
+  }
+}

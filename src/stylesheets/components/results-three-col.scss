@@ -1,0 +1,93 @@
+@import '../variables';
+
+
+.three-column-block.results {
+  justify-content: space-around;
+
+  strong {
+    text-transform: uppercase;
+  }
+
+  p {
+    max-width: 30ch;
+    //margin: 0;
+    text-align: center;
+
+    line-height: 2.4rem;
+    font-size: $text-size-sm;
+  }
+
+  svg {
+    margin-bottom: 1rem;
+  }
+
+  > div {
+    margin-bottom: 4rem;
+  }
+
+  .percentage {
+    margin: 2rem -0.75rem 0 0;
+    font: {
+      size: $text-size-huge * 1.2;
+    }
+
+    span {
+      display: inline-block;
+      vertical-align: super;
+
+      font-size: 55%;
+    }
+  }
+
+  @media (min-width: $small-screen) {
+    p {
+      margin: 0;
+      line-height: normal;
+      font-size: $text-size-body;
+    }
+
+    > div {
+      margin-bottom: 7rem;
+    }
+
+    .percentage {
+      margin-top: 3rem;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.pie-chart {
+  fill: $color-orange-cheer;
+  stroke: $color-orange-cheer;
+
+  .background-ellipse {
+    fill: $color-gray-pale;
+    stroke: none;
+  }
+}
+
+.star-chart {
+  .star-bright {
+    fill: $color-orange-cheer;
+  }
+
+  .star-gray {
+    fill: $color-gray-pale;
+  }
+}
+
+.h-chart {
+  .h-icon {
+    fill: $color-orange-cheer;
+  }
+
+  .h-icon-slash {
+    fill: none;
+    stroke: $color-gray-slate;
+  }
+
+  .h-icon-gray {
+    fill: $color-gray-pale;
+  }
+}

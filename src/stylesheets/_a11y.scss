@@ -1,0 +1,42 @@
+// https://github.com/WICG/focus-ring
+
+$color-show: #99ffbd;
+
+a:focus,
+button.focus-ring,
+input[type='text'] {
+    outline-color: $color-blue-active-field;
+}
+
+input[type='checkbox'].focus-ring + span {
+  box-shadow: 0 0 2px 1px $color-blue-active-field;
+}
+
+input[type='checkbox']:checked.focus-ring + span {
+  box-shadow: 0 0 2px 1px $color-gray-coal;
+}
+
+input[type='range'].focus-ring {
+  $box-shadow: 0 0 1px 2px $color-gray-coal;
+
+  box-shadow: $box-shadow;
+
+  &::-webkit-slider-thumb {
+    box-shadow: $box-shadow;
+    background-color: $color-show;
+  }
+
+  &::-moz-range-thumb {
+    box-shadow: $box-shadow;
+    background-color: $color-show;
+  }
+
+  &::-ms-thumb {
+    box-shadow: $box-shadow;
+    background-color: $color-show;
+  }
+}
+
+.js-focus-ring :focus:not(.focus-ring) {
+  outline-width: 0;
+}

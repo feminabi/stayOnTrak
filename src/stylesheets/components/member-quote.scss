@@ -1,0 +1,112 @@
+@import '../variables';
+@import '../typography';
+@import '../utilities';
+
+.stories {
+  .quote {
+    margin-bottom: 9rem;
+  }
+
+  .content-block-small:last-of-type {
+    .quote {
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: $small-screen) {
+      margin-bottom: 14rem;
+    }
+  }
+
+  > .page-intro-block {
+    padding-bottom: 1.5rem;
+  }
+
+  @media (min-width: $small-screen) {
+    &::after {
+      bottom: -9rem;
+    }
+  }
+}
+
+.quote {
+  background-color: $color-blue-turquoise;
+  padding: 4rem ($spacing-common-container-edges - 0.2rem) 3.2rem;
+  position: relative;
+  text-align: center;
+
+  @media (min-width: $small-screen) {
+    display: flex;
+    text-align: left;
+    padding: 4.6rem 5.2rem 3rem;
+  }
+
+  @media (min-width: $medium-screen) {
+    padding: 4.6rem 5.2rem 3.8rem;
+  }
+
+  svg {
+    fill: $color-blue-sea;
+    width: 4.6rem;
+
+    @media (min-width: $small-screen) {
+      width: 5.9rem;
+    }
+
+    @media (min-width: $medium-screen) {
+      width: auto;
+    }
+  }
+
+  .quote-icon {
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: -3.0rem;
+    height: 5.6rem;
+    width: 6.6rem;
+
+    margin: 0 auto;
+  }
+
+  .quote-photo {
+    padding: 0 0 1rem 0;
+
+    img {
+      border-radius: 50%;
+
+      width: 7.7rem;
+      height: 7.7rem;
+    }
+
+    @media (min-width: $small-screen) {
+      padding-right: 3rem;
+
+      img {
+        width: 16rem;
+        height: 16rem;
+      }
+    }
+  }
+
+  .quote-copy {
+    @extend %testimonial-feature-text;
+
+    margin: 0;
+
+    p {
+      margin-top: 0;
+    }
+
+    // quote author
+    cite {
+      @extend %testimonial-name;
+    }
+  }
+
+  // adjacent element spacing
+  .quote-photo + .quote-text {
+    @media (min-width: $medium-screen) {
+      padding-left: 2rem;
+    }
+  }
+}

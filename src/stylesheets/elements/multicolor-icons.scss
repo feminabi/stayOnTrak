@@ -1,0 +1,39 @@
+@import '../variables';
+
+$dark-color: #263357;
+$light-color: #4f67af;
+$white-color: $color-white;
+
+
+.multicolor-icon {
+  overflow: visible;
+
+  .fill-white {
+    fill: $white-color;
+  }
+
+  .stroke-white {
+    stroke: $white-color;
+  }
+
+  .fill-color {
+    fill: $light-color;
+
+    &.match-stroke {
+      stroke: $light-color;
+    }
+  }
+
+  .fill-dark {
+    fill: $dark-color;
+  }
+
+  .stroke-color {
+    stroke: $dark-color;
+
+    &.match-fill {
+      fill: $dark-color;
+    }
+  }
+}
+

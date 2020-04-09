@@ -1,0 +1,87 @@
+@import '../variables';
+
+@mixin mobile-menu($menu-width) {
+  position: relative;
+
+  > ul {
+    @media (max-width: $medium-screen) {
+      display: block;
+      position: fixed;
+      top: 0;
+      right: -$menu-width;
+      width: $menu-width;
+      height: 100vh;
+
+      transform: translateX(0);
+
+      background-color: $color-beige-sand;
+
+      transition: transform 0.5s, visibility 0.5s;
+
+      a {
+        border-top: none;
+        display: block;
+        color: $color-text-link;
+      }
+
+      li {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+
+        position: relative;
+
+        &:not(:first-of-type)::after {
+          position: absolute;
+          left: 0.25rem;
+          bottom: 0;
+          width: 2rem;
+          border-bottom: 2px solid $color-border;
+
+          content: '';
+        }
+      }
+    }
+
+    @media (min-width: $medium-screen) {
+      width: auto;
+      transform: none;
+      background: none;
+      box-shadow: none;
+      position: static;
+
+      li {
+        &.menu-only {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .menu-close {
+    height: 3rem;
+    width: 3rem;
+    fill: $color-text;
+
+    cursor: pointer;
+  }
+
+  .menu-only:first-of-type {
+    padding: 0;
+    margin-top: 2rem;
+    margin-right: 1.5rem;
+    text-align: right;
+  }
+
+
+  @media (max-width: $medium-screen) {
+    ul {
+      visibility: hidden;
+    }
+
+    .menu-visible {
+      visibility: visible;
+      transform: translateX(-$menu-width);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+  }
+}

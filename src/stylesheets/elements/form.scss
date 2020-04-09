@@ -1,0 +1,99 @@
+@import '../variables';
+
+form {
+  padding: 0 $spacing-common-container-edges 5rem;
+
+  label, .label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3.2rem;
+
+    span > em {
+      font-weight: 300;
+      font-style: normal;
+    }
+  }
+
+  .centered-control {
+    padding: 0;
+  }
+}
+
+.button-group {
+  display: flex;
+}
+
+.radio-button-group {
+  justify-content: space-between;
+
+  > label {
+    flex: 0 0 32%;
+  }
+
+  & + span {
+    @extend %form-label;
+
+    order: -1;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.best-time-controls {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  .dropdown-select {
+    flex: 0 0 47%;
+
+    position: relative;
+
+    &::after {
+      content: '';
+
+      position: absolute;
+      right: 1.25rem;
+      top: 45%;
+      z-index: 1;
+
+      width: 0;
+      height: 0;
+
+      pointer-events: none;
+
+      border: {
+        left: 0.4em solid transparent;
+        right: 0.4em solid transparent;
+        top: 0.4em * 1.2 solid $color-text-pale;
+      }
+    }
+  }
+
+  select {
+    @extend %input-text;
+
+    width: 100%;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    &::-ms-expand {
+      display: none;
+    }
+  }
+
+  & + span {
+    @extend %form-label;
+
+    order: -1;
+    margin-bottom: 0.5rem;
+  }
+
+  @media (min-width: $small-screen) and (max-width: $medium-screen) {
+    font-size: $text-size-xs !important;
+
+    select {
+      font-size: inherit !important;
+    }
+  }
+}

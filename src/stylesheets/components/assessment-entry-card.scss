@@ -1,0 +1,46 @@
+@import '../layout';
+@import '../elements/assessment-common';
+
+
+.assessment-entry-card {
+  @extend %content-card-padding;
+
+  border-radius: $element-corner-radius;
+  background-color: $color-white;
+  text-align: center;
+  font-size: $text-size-sm;
+
+  @media (min-width: $small-screen) {
+    padding: 4.8rem 5rem;
+  }
+
+  p {
+    margin: 0;
+    line-height: 2.4rem;
+
+    font: {
+      weight: 600;
+    }
+  }
+
+  label {
+    white-space: normal;
+  }
+
+  .assessment-scale {
+    margin: 3.2rem 0 5rem;
+  }
+
+  @media (min-width: $small-screen) {
+    font-size: $text-size-body;
+  }
+
+  @media (min-width: $medium-screen) {
+    font-size: $text-size-md;
+    line-height: normal;
+
+    .link-next-question {
+      font-size: $text-size-body;
+    }
+  }
+}

@@ -1,0 +1,85 @@
+/* Spacing+Sizing*/
+$wrapper-max-width: 118.5rem;
+$absolute-width: 1600px;
+$small-block-width: 88.5rem;
+$callout-block-width: 88.5rem;
+
+$spacing-common-container-edges: 3rem;
+
+$height-header: 5rem;
+$height-header-medium: 6.5rem;
+$height-height-large: 10rem;
+
+/* Colors */
+/* Format: [color-colorFamily-colorChild] */
+$color-gray-coal: #1a1a1a;
+$color-gray-stone: #636363;
+$color-gray-slate: #939393;
+$color-gray-pale: #d2d0ce;
+
+$color-orange-cheer: #ffac51;
+$color-orange-safety: #ffa174;
+$color-orange-burnt: #631f00;
+$color-red-error: #d04343;
+
+$color-blue-turquoise: #97d2cc;
+$color-blue-sea: #529992;
+$color-blue-social-media: #3197B9;
+$color-blue-active-field: #2db1d8;
+$color-blue-hyacinth: #24418e;
+
+$color-button-default: #3853a4;
+$color-button-hover-active: #112e85;
+
+$color-beige-cardboard: #bfbdba;
+$color-beige-sand: #efece8;
+$color-beige-cream: #faf7f3;
+
+$color-white: #fff;
+$color-black: #000;
+
+$color-text: $color-gray-coal;
+$color-text-pale: #666;
+$color-text-link: $color-blue-hyacinth;
+
+$color-button-standard: $color-blue-hyacinth;
+//$color-button-secondary: rgba(78, 181, 218, 0.69);
+$color-button-secondary: rgba(255, 255, 255, 0.2);
+
+$color-border: $color-beige-cardboard;
+
+$box-shadow-buttons: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+
+/* Fonts */
+$font-body-regular: 'Adelle Sans', sans-serif;
+$font-headers-regular: $font-body-regular;
+
+// todo: revisit these var names...
+$text-size-tiny: 1.2rem;
+$text-size-xs: 1.4rem;
+$text-size-sm: 1.6rem;
+$text-size-body: 1.8rem;
+$text-size-md: 2rem;
+$text-size-ml: 2.2rem;
+$text-size-lg: 2.4rem;
+$text-size-xl: 2.6rem;
+$text-size-big: 3.2rem;
+$text-size-xxl: 3.6rem;
+$text-size-huge: 4.4rem;
+
+$element-corner-radius: 0.2rem;
+
+
+/* section spacings */
+$section-spacing-sm: 8rem;
+$section-spacing-md: 12rem;
+$section-spacing-lg: 14rem;
+
+
+/* Breakpoints */
+$xxsmall-screen: 340px !default;
+$xsmall-screen: 400px !default;
+$small-screen: 600px !default;
+$medium-screen: 900px !default;
+$large-screen: 1200px !default;
+$xlarge-screen: 1800px !default;

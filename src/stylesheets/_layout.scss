@@ -1,0 +1,28 @@
+@import './variables';
+
+
+%block-wrapper {
+  @media (min-width: $small-screen) {
+    max-width: $wrapper-max-width;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+%minimum-edge-padding {
+  @media (max-width: $large-screen) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+%content-edge-padding {
+  @media (min-width: $small-screen) and (max-width: $large-screen) {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+%content-card-padding {
+  padding: 2.5rem 1.5rem;
+}

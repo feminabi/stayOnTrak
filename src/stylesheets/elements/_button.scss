@@ -1,0 +1,102 @@
+@import '../variables';
+@import '../typography';
+
+@mixin standard-button($type) {
+  $background-color: rgba(0, 0, 0, 0);
+  $border-color: rgba(0, 0, 0, 0);
+  $hover-background-color: rgba(0, 0, 0, 0);
+  $hover-border-color: rgba(0, 0, 0, 0);
+  $color: currentColor;
+
+  @if $type == 'primary' {
+    $background-color: $color-button-default;
+    $border-color: $color-button-default;
+    $hover-background-color: $color-button-hover-active;
+    $hover-border-color: $color-button-hover-active;
+    $color: $color-white;
+
+  } @else if $type == 'secondary' {
+    $background-color: $color-button-secondary;
+    $hover-background-color: $color-white;
+    $border-color: $color-text;
+    $hover-border-color: $color-text;
+    $color: $color-text;
+  }
+
+  position: relative;
+
+  min-width: 138px;
+  padding: 0.8rem 1.5rem 1rem;
+
+  border-radius: $element-corner-radius;
+  border: 2px solid $border-color;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.28);
+
+  background-color: $background-color;
+  color: $color;
+
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
+  font: {
+    size: $text-size-sm;
+    weight: bold;
+  }
+
+  transition: opacity 0.2s, background-color 0.2s;
+
+  @media (min-width: $small-screen) {
+    min-width: 212px;
+    padding: 1rem 1.5rem 1.4rem;
+
+  }
+
+  @media (min-width: $medium-screen) {
+    min-width: 220px;
+
+    white-space: nowrap;
+  }
+
+  //& + button,
+  //& + .button {
+  //  margin-left: 1.5rem;
+  //}
+
+  &:not(:disabled) {
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      text-decoration: none;
+      background-color: $hover-background-color;
+      border-color: $hover-border-color;
+    }
+  }
+
+  &:active {
+    top: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+
+%link-styled-button {
+  @extend %link-common-styling;
+
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+
+  font: {
+    size: inherit;
+    weight: inherit;
+  }
+
+  .small-arrow {
+    width: 1.2em;
+    margin-bottom: -0.1rem;
+  }
+}

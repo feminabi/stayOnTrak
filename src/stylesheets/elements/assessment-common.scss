@@ -1,0 +1,90 @@
+@import '../variables';
+@import './input-range';
+
+.assessment-question {
+  p {
+    margin: 0.5rem 0 6rem;
+  }
+}
+
+.assessment-scale {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4rem 0;
+
+  input[type='range'] {
+    @extend %range-slider;
+
+    flex: 0 0 100%;
+  }
+
+  label {
+    flex: 0 0 50%;
+  }
+
+  @media (max-width: $small-screen) {
+    input {
+      order: 3;
+    }
+  }
+
+  @media (min-width: $small-screen) {
+    flex-wrap: nowrap;
+    justify-content: center;
+
+    label {
+      flex: 0 0 15%;
+    }
+
+    input[type='range'] {
+      flex: 0 0 70%;
+    }
+  }
+
+  &.show-value + div {
+    margin-top: -1rem;
+
+    color: $color-blue-hyacinth;
+    font: {
+      weight: 600;
+      size: $text-size-big;
+    }
+
+    span {
+      margin-right: 0.2em;
+    }
+  }
+}
+
+.assessment-label {
+  margin: 0 0 0.8rem;
+  padding: 0;
+  width: 7rem;
+  font-size: $text-size-xs;
+
+  &:first-child {
+    text-align: left;
+  }
+
+  &:last-child {
+    text-align: right;
+  }
+
+  @media (min-width: $small-screen) {
+    font-size: $text-size-body;
+    margin: 0;
+    padding: 0 1.6rem;
+
+    &:first-child {
+      left: 0;
+      text-align: right;
+    }
+
+    &:last-child {
+      right: 0;
+      text-align: left;
+    }
+  }
+}

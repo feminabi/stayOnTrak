@@ -1,0 +1,122 @@
+@import '../variables';
+
+
+%range-slider {
+  $track-height: 8px;
+  $track-width: 100%;
+  $track-border-radius: 5px;
+  $track-background-color: $color-blue-turquoise;
+
+  $slider-thumb-size: 30px;
+  $slider-thumb-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  $slider-thumb-color-hover: $color-white;
+  $slider-thumb-color: $color-beige-cream;
+
+  -webkit-appearance: none;
+  width: $track-width;
+  height: $track-height;
+  border-radius: $track-border-radius;
+  background-color: $track-background-color;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+  outline: none;
+  padding: 0;
+  margin: 0;
+
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: $slider-thumb-size;
+    height: $slider-thumb-size;
+
+    border-radius: 50%;
+    box-shadow: $slider-thumb-shadow;
+    background-color: $slider-thumb-color;
+    cursor: -webkit-grab;
+
+    transition: background 0.15s ease-in-out;
+
+    &:hover,
+    &:active {
+      background-color: $slider-thumb-color-hover;
+    }
+
+    &:active {
+      cursor: -webkit-grabbing;
+    }
+  }
+
+  &::-moz-range-thumb {
+    width: $slider-thumb-size;
+    height: $slider-thumb-size;
+    border: none;
+    border-radius: 50%;
+    box-shadow: $slider-thumb-shadow;
+    background-color: $slider-thumb-color;
+    cursor: -moz-grab;
+    transition: background 0.15s ease-in-out;
+
+    &:hover,
+    &:active {
+      background-color: $slider-thumb-color-hover;
+    }
+
+    &:active {
+      cursor: -moz-grabbing;
+    }
+  }
+
+  &::-moz-range-track {
+    border-radius: $track-border-radius;
+    background-color: $track-background-color;
+    height: 100%;
+  }
+
+  &::-moz-focus-outer {
+    border: 0;
+  }
+
+  &::-ms-fill-lower {
+    background-color: $track-background-color;
+    border-radius: $track-border-radius;
+  }
+
+  &::-ms-fill-upper {
+    background-color: $track-background-color;
+    border-radius: $track-border-radius;
+  }
+
+  &::-ms-thumb {
+    cursor: grab;
+    background-color: $slider-thumb-color;
+    border-radius: 50%;
+    box-shadow: $slider-thumb-shadow;
+
+    height: $slider-thumb-size;
+    width: $slider-thumb-size;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  &::-ms-ticks-after {
+    display: none;
+  }
+
+  &::-ms-ticks-before {
+    display: none;
+  }
+
+  &::-ms-track {
+    background: transparent;
+    color: transparent;
+    height: $track-height;
+    border: none;
+    //border-color: transparent;
+    //border-width: 1rem 0;
+  }
+
+  &::-ms-tooltip {
+    display: none;
+  }
+}

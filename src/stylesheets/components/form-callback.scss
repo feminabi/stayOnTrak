@@ -1,0 +1,97 @@
+@import '../layout';
+@import '../elements/form';
+@import '../elements/input-text';
+@import '../elements/input-checkbox-radio';
+
+input[type='text'],
+input[type='date'] {
+  @extend %input-text;
+}
+
+.button-style-radio {
+  @extend %label-checkbox-radio;
+}
+
+label, .label {
+  @extend %label-input-text;
+} 
+
+form {
+  @extend %block-wrapper;
+
+  > div {
+    @media (min-width: $small-screen) {
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    &.two-cols {
+      margin-left: auto;
+      margin-right: auto;
+
+      label, .label {
+        flex: 0 0 45%;
+      }
+    }
+
+    &.three-cols {
+      > label, .label {
+        @media (min-width: $small-screen) {
+          flex: 0 0 45%;
+
+          &.span-two-cols {
+            flex-basis: 100%;
+          }
+        }
+
+        @media (min-width: $medium-screen) {
+          flex: 0 0 30%;
+
+          &.span-two-cols {
+            flex-basis: 65%;
+          }
+        }
+      }
+    }
+  }
+
+  .button-primary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 4.5rem auto 0;
+    width: auto;
+
+    .small-arrow {
+      margin-left: 0.5rem;
+    } 
+
+    @media (min-width: $small-screen) {
+      margin-top: 4.5rem;
+    }
+
+    @media (min-width: $medium-screen) {
+      margin-top: 6rem;
+    } 
+  }
+ 
+  .arrow-link { 
+    text-decoration: none;
+    &:hover,
+    &:active {
+      text-decoration: none;
+    }
+  }
+
+  .centered-button {
+    text-align: center;  
+  }
+ 
+  .applynow{
+    margin-top: 2rem;
+    width: 24rem;
+  }
+}

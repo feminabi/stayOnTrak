@@ -32,7 +32,7 @@
     "wicg-focus-ring": "^2.0.2"
   },
   "scripts": {
-    "develop": "DEBUG=gatsby:* gatsby develop",
+    "develop": "gatsby develop",
     "build": "yarn run format && gatsby build",
     "serve": "node ./bin/www",
     "deploy": "git push production master",
@@ -43,7 +43,7 @@
   "main": "bin/www",
   "devDependencies": {
     "axios": "^0.17.0",
-    "gatsby": "^1.9.0",
+    "gatsby": "^1.9.279",
     "gatsby-link": "^1.6.0",
     "gatsby-plugin-catch-links": "^1.0.0",
     "gatsby-plugin-react-helmet": "^1.0.0",

@@ -42,7 +42,7 @@
   },
   "main": "bin/www",
   "devDependencies": {
-    "axios": "^0.17.0",
+    "axios": "^0.21.1",
     "gatsby": "^1.9.279",
     "gatsby-link": "^1.6.0",
     "gatsby-plugin-catch-links": "^1.0.0",

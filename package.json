@@ -28,7 +28,7 @@
     "pug": "^2.0.0-rc.4",
     "qs": "^6.5.1",
     "react-transition-group": "^2.2.1",
-    "validator": "^9.0.0",
+    "validator": "^13.7.0",
     "wicg-focus-ring": "^2.0.2"
   },
   "scripts": {

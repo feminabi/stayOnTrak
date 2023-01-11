@@ -52,7 +52,7 @@
     "gatsby-remark-autolink-headers": "^1.4.0",
     "gatsby-remark-images": "^1.5.0",
     "gatsby-source-filesystem": "^1.5.0",
-    "gatsby-transformer-remark": "^1.7.0",
+    "gatsby-transformer-remark": "^5.25.1",
     "nsp": "^3.0.0",
     "prettier": "^1.6.1",
     "prop-types": "^15.6.0"
